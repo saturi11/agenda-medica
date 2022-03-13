@@ -31,18 +31,23 @@
         </tr>
         </thead>
             <tbody>
-            @foreach($users as $user)
+            @foreach($users as $users)
                 <tr>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->cpf}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->phone}}</td>
-                    <td>{{$user->status}}</td>
-                    <td>{{$user->permission}}</td>
-                    <td>{{$user->birth}}</td>
+                    <td>{{$users->name}}</td>
+                    <td>{{$users->cpf}}</td>
+                    <td>{{$users->email}}</td>
+                    <td>{{$users->phone}}</td>
+                    <td>{{$users->status}}</td>
+                    <td>{{$users->permission}}</td>
+                    <td>{{$users->birth}}</td>
                     <td>
-                        {{form::open (['route' =>['user.delete',$user->id],'method'=>'delete'])}}
+                        {{form::open (['route' =>['user.delete',$users->id],'method'=>'delete'])}}
                         {{form::submit('remover')}}
+                        {{form::close()}}
+                    </td>
+                    <td>
+                        {{form::open (['route' =>['user.edit',$users->id],'method'=>'put'])}}
+                        {{form::submit('editar')}}
                         {{form::close()}}
                     </td>
                 </tr>
