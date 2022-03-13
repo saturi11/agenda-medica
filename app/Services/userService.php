@@ -40,7 +40,31 @@ class userService{
 
         }
     }
-    public function update(){}
+    public function update($data,$id)
+    {
+        try {
+
+            $usuario =$this->repository->update($data,$id);
+
+            return [
+                'success' =>true,
+                'message'=> "usuario atualizado",
+                'data' => $usuario
+            ];
+            return redirect()->route('user.index');
+        }catch (Exception $e){
+
+            switch (get_class($e)){
+                case QueryException::class      :['succses' =>false, 'messages' =>$e->getMessage()];
+                case ValidatorException::class  :['succses' =>false, 'messages' =>$e->getMessageBag()];
+                case Exception::class           :['succses' =>false, 'messages' =>$e->getMessage()];
+                default                         :['succses' =>false, 'messages' =>$e->getMessage()];
+            }
+
+        }
+    }
+
+
 
     public function delete($user_id){
         try {

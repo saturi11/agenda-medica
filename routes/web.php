@@ -46,6 +46,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dash
 Route::get('user', [UsersController::class, 'index'])->name('user.index');
 Route::post('user', [UsersController::class, 'store'])->name('user.store');
 Route::delete('user/{id}', [UsersController::class, 'destroy'])->name('user.delete');
+Route::get('user/{id}', [UsersController::class, 'edit'])->name('user.edit');
+Route::put('user/{id}', [UsersController::class, 'update'])->name('user.update');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +59,7 @@ Route::delete('user/{id}', [UsersController::class, 'destroy'])->name('user.dele
 Route::get('consulta', [ConsultasController::class, 'index'])->name('consulta.index');
 Route::post('consulta', [ConsultasController::class, 'store'])->name('consulta.store');
 Route::delete('consulta/{id}', [ConsultasController::class, 'destroy'])->name('consulta.delete');
-
+Route::put('consulta/{id}', [ConsultasController::class, 'edit'])->name('consulta.edit');
 
 
 /*
@@ -67,4 +70,5 @@ Route::delete('consulta/{id}', [ConsultasController::class, 'destroy'])->name('c
 Route::get('paciente', [PacientesController::class, 'index'])->name('paciente.index');
 Route::post('paciente', [PacientesController::class, 'store'])->name('paciente.store');
 Route::delete('paciente/{id}', [PacientesController::class, 'destroy'])->name('paciente.delete');
+Route::put('paciente/{id}', [PacientesController::class, 'edit'])->name('paciente.edit');
 

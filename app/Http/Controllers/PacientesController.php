@@ -42,7 +42,7 @@ class PacientesController extends Controller
     public function store(PacienteCreateRequest $request)
     {
             $request = $this->service->store($request->all());
-            $paciente = $request['success'] ? $request['data'] : null;
+            $pacientes = $request['success'] ? $request['data'] : null;
 
 
             session()->flash('success', [
@@ -50,7 +50,7 @@ class PacientesController extends Controller
                 'message' => $request['message']
             ]);
             return view('paciente.index', [
-                'paciente' => $paciente,
+                'paciente' => $pacientes,
             ]);
     }
 
