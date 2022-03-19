@@ -9,8 +9,8 @@
     <body>
         <section id="conteudo-view" class="login">
             <h1>Agenda Médica</h1>
-            
-            {!! Form::open(['route' => 'user.login', 'method' =>'post'])  !!}
+
+            {!! Form::open(['route' => 'user.login', 'method' =>'post',])  !!}
                 <p>Acesse o Sistema</p>
 
                     <lable>
@@ -24,6 +24,7 @@
                     {!! Form::submit('Entrar')  !!}
             {!! Form::close()  !!}
         </section>
-       
+
     </body>
 </html>
+
