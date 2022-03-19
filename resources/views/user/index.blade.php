@@ -19,6 +19,5 @@
     {{ Form::close()}}
     @extends('user.list')
 @endsection
-
 @section('js-view')
 @endsection

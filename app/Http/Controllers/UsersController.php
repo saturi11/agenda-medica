@@ -69,42 +69,26 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = $this->repository->find($id);
-
-        return view('users.edit', compact('user'));
+        return view('user.edit', [
+            'user' => $user,
+        ]);
     }
 
 
-    public function update(UserUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        try {
+        $request = $this->service->update($request->all(),$id);
+        $users = $request['success'] ? $request['data'] : null;
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-            $user = $this->repository->update($request->all(), $id);
+        session()->flash('success', [
+            'success' => $request['success'],
+            'message' => $request['message']
+        ]);
+        return view('user.index', [
+            'users' => $users,
+        ]);
 
-            $response = [
-                'message' => 'User updated.',
-                'data' => $user->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error' => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
     }
 
 
@@ -118,6 +102,6 @@ class UsersController extends Controller
             'success' => $request['success'],
             'message' => $request['message']
         ]);
-        return view('user.index');
+        return redirect()->back()->with('message', 'Usuario deleted.');
     }
 }
